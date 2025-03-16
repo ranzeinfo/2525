@@ -3,6 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-020DMJ1JKE"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-020DMJ1JKE');
+</script>
+
   <title>PROFILE｜ranze オフィシャルサイト</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
@@ -151,6 +162,19 @@
       overflow: hidden;
       margin: 0 auto 30px auto;
     }
+
+    @media (max-width: 768px) {
+    .photo-wrapper {
+      width: 100%;    /* 幅を画面いっぱいに */
+      height: auto;   /* 高さは自動調整 */
+    }
+    .profile-photo {
+      width: 100%;
+      height: auto;
+      object-fit: cover; /* 必要に応じて調整 */
+    }
+    }
+
     .profile-photo {
       width: 100%;
       height: 100%;
