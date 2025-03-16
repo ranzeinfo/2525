@@ -3,6 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-020DMJ1JKE"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-020DMJ1JKE');
+</script>
+
+
   <title>NEWS｜ranze オフィシャルサイト</title>
   <!-- FontAwesome CDN（SNSアイコン用） -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -193,7 +205,7 @@
     /* 16:9 バナーコンテナの設定 */
     .banner-container {
     width: 100%;
-    max-width: 500px;  /* 必要に応じて調整 */
+    max-width: 800px;  /* 必要に応じて調整 */
     margin: 0 auto; /* 上下の余白、中央寄せ */
     position: relative;
     overflow: hidden;
@@ -207,7 +219,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;  /* コンテナを埋めるが、はみ出さない */
+    object-fit: contain;  /* コンテナを埋めるが、はみ出さない */
     /* もし全体を表示したい場合は "object-fit: contain;" と "object-position: center left;" などに変更 */
     }
 
@@ -309,8 +321,10 @@
       </header>
       <!-- 画像コンテナ (小さめ & 左寄せ) -->
       <div class="image-container">
-        <img src="https://tcj-image-production.s3.ap-northeast-1.amazonaws.com/u459214/r1291857/itew1291857.webp?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJV4VIS2VN3X4CBGA%2F20250316%2Fap-northeast-1%2Fs3%2Faws4_request&X-Amz-Date=20250316T063907Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=35829d188a975b2ab1e5186c8e7067b75c577b23d78635084eed36d319c117f8" 
-          alt="記事用画像">
+        <a href="https://linkco.re/0SQHEzYp" target="_blank" rel="noopener noreferrer">
+            <img src="https://tcj-image-production.s3.ap-northeast-1.amazonaws.com/u459214/r1291857/itew1291857.webp?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJV4VIS2VN3X4CBGA%2F20250316%2Fap-northeast-1%2Fs3%2Faws4_request&X-Amz-Date=20250316T063907Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=35829d188a975b2ab1e5186c8e7067b75c577b23d78635084eed36d319c117f8" 
+            alt="記事用画像">
+        </a>
       </div>
       <section class="news-content">
         <p>2025年2月12日（水）に、新曲「Koe」の配信リリースが決定しました。</p>
@@ -327,7 +341,7 @@
     <!-- 16:9 バナー -->
     <div class="banner-container">
         <a href="https://linkco.re/0SQHEzYp" target="_blank" rel="noopener noreferrer">
-          <img src="https://res-console.cloudinary.com/dwbdedxwb/thumbnails/v1/image/upload/v1742110178/S29lX2VjbjF6bw==/drilldown" alt="バナー画像">
+          <img src="https://res.cloudinary.com/dwbdedxwb/image/upload/v1742125251/Koe_uz6oyc.jpg" alt="バナー画像">
         </a>
       </div>
   </main>
