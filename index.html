@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ranze｜オフィシャルサイト</title>
+  <!-- FontAwesome CDN（SNSアイコン用） -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* ============================
+       変数・ベーススタイル
+    ============================ */
+    :root {
+      --main-color: #000;       /* 背景色（黒） */
+      --text-color: #fff;       /* 文字色（白） */
+      --header-height: 70px;    /* PC版ヘッダー高さ */
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: sans-serif;
+      background-color: var(--main-color);
+      color: var(--text-color);
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* ============================
+       PC版ヘッダー (768px以上)
+    ============================ */
+    .desktop-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: var(--header-height);
+      display: flex;
+      align-items: center;  /* 縦方向の中央寄せ */
+      justify-content: space-between;
+      padding: 0 20px;
+      background-color: rgba(0, 0, 0, 0.7);
+      z-index: 999;
+    }
+    .desktop-header nav ul {
+      list-style: none;
+      display: flex; /* 横並び */
+      gap: 20px;
+      margin: 0;
+      padding: 0;
+    }
+    .desktop-header nav ul li a {
+      font-family: 'Baskerville';
+    }
+
+    .logo span {
+      font-family: 'Baskerville', serif !important;
+      font-size: 2rem;
+      font-weight: normal;
+      color: var(--text-color);
+    }
+
+    /* ============================
+       モバイル用の要素は
+       PC版では非表示
+    ============================ */
+    .mobile-header,
+    .mobile-hero-nav,
+    .mobile-overlay {
+      display: none;
+      font-weight: normal;
+      font-family: 'Baskerville';
+    }
+
+    /* ============================
+       ヒーローセクション
+    ============================ */
+    .hero {
+      width: 100%;
+      height: 100vh;
+      background: url("https://res.cloudinary.com/dwbdedxwb/image/upload/v1741884366/9625_ranze_cnzg1m.jpg")
+        no-repeat center center / cover;
+      position: relative;
+      margin-top: var(--header-height);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero-title {
+      position: absolute;
+      font-size: 4rem;
+      font-weight: bold;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* ============================
+       メインコンテンツ
+    ============================ */
+    main {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      background-color: var(--main-color);
+    }
+    .carousel-container {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .carousel-slide {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+    .carousel-item {
+      min-width: 100%;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+    .carousel-item iframe {
+      width: 100%;
+      max-width: 560px;
+      height: 315px;
+      border: none;
+    }
+    .carousel-button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(255, 255, 255, 0.3);
+      border: none;
+      color: #fff;
+      font-size: 24px;
+      width: 50px;
+      height: 50px;
+      cursor: pointer;
+      z-index: 10;
+    }
+    .carousel-button:hover {
+      background-color: rgba(255, 255, 255, 0.6);
+    }
+    .carousel-button.prev {
+      left: 10px;
+    }
+    .carousel-button.next {
+      right: 10px;
+    }
+
+    /* ============================
+       フッター
+    ============================ */
+    footer {
+      background-color: #000;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+    }
+    footer .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      font-size: 24px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+    footer .social-icons a {
+      color: inherit;
+    }
+
+    /* ============================
+       モバイル用 (768px未満)
+    ============================ */
+    @media (max-width: 768px) {
+      /* PC版ヘッダー非表示 */
+      .desktop-header {
+        display: none;
+      }
+
+      /* モバイルヘッダー表示 (上部固定) */
+      .mobile-header {
+        display: flex;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 15px;
+        background: rgba(0, 0, 0, 0.8);
+        z-index: 3000;
+      }
+      .mobile-header .mobile-title {
+        font-size: 1.8rem;
+        font-weight: normal;
+      }
+      .mobile-header .mobile-icons {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+      }
+      .mobile-header .mobile-icons button,
+      .mobile-header .mobile-icons a {
+        background: none;
+        border: none;
+        color: #fff;
+        font-size: 1.5rem;
+        cursor: pointer;
+      }
+
+      /* ヒーロー背景位置を上にずらす */
+      .hero {
+        background-position: 30% 20% !important;
+        margin-top: 0;
+      }
+      .hero-title {
+        font-size: 2.5rem;
+      }
+
+      /* モバイル版: 常時表示の縦ナビ (ファーストビュー左下) */
+      .mobile-hero-nav {
+        display: block;
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        background: rgba(0, 0, 0, 0.6);
+        padding: 10px 15px;
+        border-radius: 5px;
+        z-index: 1500;
+      }
+      .mobile-hero-nav ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        font-size: 30px;
+        gap: 20px;
+        margin: 0;
+        padding: 0;
+      }
+
+      /* 3点リーダー展開後の黒背景オーバーレイ */
+      .mobile-overlay {
+        display: none; 
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.8);
+        z-index: 2000;
+      }
+      .mobile-overlay ul {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        margin: 0;
+        padding: 0;
+      }
+      .mobile-overlay ul li a {
+        font-size: 2rem;
+        display: block;
+        text-align: center;
+        line-height: 80px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- PC版ヘッダー (768px以上) -->
+  <header class="desktop-header">
+    <div class="logo">
+      <span>ranze</span>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="news.html">NEWS</a></li>
+        <li><a href="https://www.tunecore.co.jp/artists?id=939451" target="_blank" rel="noopener noreferrer">MUSIC</a></li>
+        <li><a href="profile.html">PROFILE</a></li>
+        <li><a href="contact.html">CONTACT</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- モバイルヘッダー (768px未満) -->
+  <div class="mobile-header">
+    <!-- 左: ranze のテキスト -->
+    <div class="mobile-title">ranze</div>
+    <!-- 右: 音楽, Instagramアイコン, 3点リーダー -->
+    <div class="mobile-icons">
+      <a href="https://www.instagram.com/ranze_x_/" title="Instagram">
+        <i class="fa-brands fa-instagram"></i>
+      </a>
+      <a href="https://www.tunecore.co.jp/artists?id=939451" title="Music" target="_blank" rel="noopener noreferrer" >
+        <i class="fa-solid fa-headphones"></i>
+      </a>
+      <button id="mobileMenuBtn">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- ヒーローセクション -->
+  <section class="hero">
+    <!-- モバイル版: 常時表示の縦ナビ (ファーストビュー左下) -->
+    <nav class="mobile-hero-nav">
+      <ul>
+        <li><a href="news.html">NEWS</a></li>
+        <li><a href="https://www.tunecore.co.jp/artists?id=939451" target="_blank" rel="noopener noreferrer">MUSIC</a></li>
+        <li><a href="profile.html">PROFILE</a></li>
+        <li><a href="contact.html">CONTACT</a></li>
+      </ul>
+    </nav>
+  </section>
+
+  <!-- 3点リーダー展開後の黒背景オーバーレイ (モバイル) -->
+  <div class="mobile-overlay" id="mobileOverlay">
+    <ul>
+      <li><a href="news.html">NEWS</a></li>
+      <li><a href="https://www.tunecore.co.jp/artists?id=939451" target="_blank" rel="noopener noreferrer">MUSIC</a></li>
+      <li><a href="profile.html">PROFILE</a></li>
+      <li><a href="contact.html">CONTACT</a></li>
+    </ul>
+  </div>
+
+  <!-- メインコンテンツ -->
+  <main>
+    <div class="carousel-container">
+      <div class="carousel-slide" id="carouselSlide">
+        <div class="carousel-item">
+          <iframe width="560" height="315"
+            src="https://www.youtube.com/embed/3Dfhgi2JHMw?si=IU1eBpv9WdQUuOwQ"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+          </iframe>
+        </div>
+        <div class="carousel-item">
+          <iframe width="491" height="872"
+            src="https://www.youtube.com/embed/vPMxt2vD5GY"
+            title="ranze 新曲【Koe】 #ranze #koe #newmusic #indiemusic #shorts"
+            frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+          </iframe>
+        </div>
+        <div class="carousel-item">
+          <iframe width="491" height="872"
+            src="https://www.youtube.com/embed/nopGPZl4YwY"
+            title="俺が君に言わずにいたこと #ranze #newmusic #indiemusic #jhiphop #Koe"
+            frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+          </iframe>
+        </div>
+        <div class="carousel-item">
+          <iframe width="491" height="872"
+            src="https://www.youtube.com/embed/diKoiXzAXA8"
+            title="サヨナラが言えなくて #ranze  #koe   #newmusic   #indiemusic   #shorts  #jhiphop #重低音"
+            frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+      <button class="carousel-button prev" id="prevBtn">&#10094;</button>
+      <button class="carousel-button next" id="nextBtn">&#10095;</button>
+    </div>
+  </main>
+
+  <!-- フッター -->
+  <footer>
+    <div class="social-icons">
+      <a href="https://www.tunecore.co.jp/artists?id=939451" title="Music" target="_blank" rel="noopener noreferrer">
+        <i class="fa-solid fa-music"></i>
+      </a>
+      <a href="https://youtube.com/@ranze2525?si=Nk8Z15uJRjMRtjwt" title="YouTube" target="_blank" rel="noopener noreferrer">
+        <i class="fa-brands fa-youtube"></i>
+      </a>
+      <a href="https://www.instagram.com/ranze_x_/" title="Instagram" target="_blank" rel="noopener noreferrer">
+        <i class="fa-brands fa-instagram"></i>
+      </a>
+      <a href="https://www.tiktok.com/@ranze_x_?is_from_webapp=1&sender_device=pc" title="TikTok" target="_blank" rel="noopener noreferrer">
+        <i class="fa-brands fa-tiktok"></i>
+      </a>
+      <!-- (以下はコメントアウトされていたので削除) -->
+      <a href="https://soundcloud.com/ranzexx" title="SoundCloud" target="_blank" rel="noopener noreferrer">
+        <i class="fa-brands fa-soundcloud"></i>
+      </a>
+    </div>
+    <p>&copy; 2025 ranze</p>
+  </footer>
+
+  <script>
+    // カルーセル制御
+    const carouselSlide = document.getElementById("carouselSlide");
+    const carouselItems = document.querySelectorAll(".carousel-item");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+
+    let counter = 0;
+    function updateCarousel() {
+      const size = carouselItems[0].clientWidth;
+      carouselSlide.style.transform = `translateX(${-size * counter}px)`;
+    }
+    nextBtn.addEventListener("click", () => {
+      counter = (counter >= carouselItems.length - 1) ? 0 : counter + 1;
+      updateCarousel();
+    });
+    prevBtn.addEventListener("click", () => {
+      counter = (counter <= 0) ? carouselItems.length - 1 : counter - 1;
+      updateCarousel();
+    });
+    window.addEventListener("resize", updateCarousel);
+    updateCarousel();
+
+    // 3点リーダー展開／閉じる処理 (モバイル)
+    const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+    const mobileOverlay = document.getElementById("mobileOverlay");
+
+    mobileMenuBtn.addEventListener("click", () => {
+      // トグル表示
+      if (mobileOverlay.style.display === "block") {
+        mobileOverlay.style.display = "none";
+      } else {
+        mobileOverlay.style.display = "block";
+      }
+    });
+  </script>
+</body>
+</html>
