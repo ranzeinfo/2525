@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <!-- Google tag (gtag.js) -->
+<script async asrc="https://www.googletagmanager.com/gtag/js?id=G-020DMJ1JKE"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-020DMJ1JKE');
+</script>
+
+
+  <title>NEWS｜ranze オフィシャルサイト</title>
+  <!-- FontAwesome CDN（SNSアイコン用） -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* ============================
+       変数・ベーススタイル
+    ============================ */
+    :root {
+      --main-color: #000;       /* 背景色 */
+      --text-color: #fff;       /* 文字色 */
+      --header-height: 70px;    /* ヘッダー高さ */
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Baskerville', serif;
+      background-color: var(--main-color);
+      color: var(--text-color);
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* ============================
+       PC版ヘッダー (768px以上)
+    ============================ */
+    .desktop-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: var(--header-height);
+      display: flex;
+      align-items: center;  /* 縦方向の中央寄せ */
+      justify-content: space-between;
+      padding: 0 20px;
+      background-color: rgba(0, 0, 0, 0.7);
+      z-index: 999;
+    }
+    .desktop-header nav ul {
+      list-style: none;
+      display: flex; /* 横並び */
+      gap: 20px;
+      margin: 0;
+      padding: 0;
+    }
+    .desktop-header nav ul li a {
+      font-family: 'Baskerville';
+    }
+
+    .logo span {
+      font-family: 'Baskerville', serif !important;
+      font-size: 2rem;
+      font-weight: normal;
+      color: var(--text-color);
+    }
+
+    /* ============================
+       モバイル用の要素は
+       PC版では非表示
+    ============================ */
+    .mobile-header,
+    .mobile-hero-nav,
+    .mobile-overlay {
+      display: none;
+      font-weight: normal;
+      font-family: 'Baskerville';
+    }
+
+
+    /* ============================
+       メインコンテンツ (記事詳細)
+    ============================ */
+    main {
+      width: 100%;
+      max-width: 1200px;
+      margin: 80px auto 40px auto;
+      padding: 40px 20px;
+      background-color: var(--main-color);
+      text-align: center;
+    }
+    h1 {
+      font-size: 1.7rem;
+      font-family: 'sans serif';
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    article {
+      text-align: left;
+      margin: 0 auto;
+      max-width: 800px;
+    }
+    article header {
+      margin-bottom: 20px;
+    }
+    article header h2 {
+      font-size: 1rem; /* ニュースタイトルは 1rem & 太字指定 */
+      margin-bottom: 10px;
+      font-family: 'sans serif';
+      font-weight: bold;
+    }
+    .news-date {
+      font-size: 0.8rem;
+      color: #ccc;
+      font-family: 'sans serif';
+    }
+    .news-content p {
+      font-size: 1rem;
+      line-height: 1.8;
+      font-family: 'sans-serif';
+      padding-top: 20px;
+    }
+
+        /* ジャケット＋収録曲ブロック */
+        .jacket-section {
+      max-width: 260px;
+      margin: 40px 0 0;
+    }
+    .jacket-image {
+        margin-bottom: 20px;
+    }
+    .jacket-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .tracklist {
+      flex: 1;
+      font-family: 'sans-serif';
+      font-size: 0.95rem;
+      line-height: 1.8;
+    }
+    .tracklist-title {
+      margin-bottom: 10px;
+    }
+    .tracklist ol {
+      margin: 0 0 20px 1.2em;
+      padding: 0;
+    }
+    .buy-link {
+      margin-top: 10px;
+    }
+    .buy-link a {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      .jacket-section {
+        flex-direction: column;
+        gap: 20px;
+      }
+      .jacket-image {
+        width: 100%;
+        max-width: 260px;
+      }
+    }
+
+
+    /* 画像コンテナ：画像を左寄せ＆小さく表示 */
+    .image-container {
+      max-width: 800px;    /* 記事幅と合わせる or 好きな値に */
+      margin: 0px auto;   /* 中央揃え + 余白 */
+    }
+    .image-container img {
+      display: block;    /* ブロック要素化 */
+      position: static;
+      width: 100%;       /* コンテナ幅に合わせる */
+      height: auto;      /* アスペクト比を維持 */
+      object-fit: contain; 
+    }
+
+    /* 16:9 バナーコンテナの設定 */
+    .banner-container {
+    max-width: 800px;  /* 必要に応じて調整 */
+    margin: 40px auto; /* 上下の余白、中央寄せ */
+    padding-top: 10px; 
+    /* position: relative;
+    overflow: hidden;
+    padding-top: 56.25%;  */
+    }
+
+    /* バナー画像の設定 */
+    .banner-container img {
+        position: static;   /* absolute をやめる */
+        width: 100%;
+        height: auto;       /* 画像本来の比率 */
+        object-fit: contain;
+    }
+
+    .banner-container a {
+    display: inline-block; /* 画像サイズぴったりのリンクにする */
+    }
+
+
+    /* ============================
+       フッター
+    ============================ */
+    footer {
+      background-color: #000;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+    }
+    footer .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      font-size: 24px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+    footer .social-icons a {
+      color: inherit;
+    }
+
+    
+    /* ============================
+       モバイル用 (768px未満)
+    ============================ */
+    @media (max-width: 768px) {
+      /* PC版ヘッダー非表示 */
+      .desktop-header {
+        display: none;
+      }
+
+      /* モバイルヘッダー表示 (上部固定) */
+      .mobile-header {
+        display: flex;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 15px;
+        background: rgba(0, 0, 0, 0.8);
+        z-index: 3000;
+      }
+      .mobile-header .mobile-title {
+        font-size: 1.8rem;
+        font-weight: normal;
+      }
+      .mobile-header .mobile-icons {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+      }
+      .mobile-header .mobile-icons button,
+      .mobile-header .mobile-icons a {
+        background: none;
+        border: none;
+        color: #fff;
+        font-size: 1.5rem;
+        cursor: pointer;
+      }
+      /* 3点リーダー展開後の黒背景オーバーレイ */
+      .mobile-overlay {
+        display: none; 
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.8);
+        z-index: 2000;
+      }
+      .mobile-overlay ul {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        margin: 0;
+        padding: 0;
+      }
+      .mobile-overlay ul li a {
+        font-size: 2rem;
+        display: block;
+        text-align: center;
+        line-height: 80px;
+      }
+
+    }
+  </style>
+</head>
+<body>
+  <!-- ヘッダー共通部分 -->
+  <header class="desktop-header">
+    <div class="logo">
+      <a href="index.html"><span>ranze</span></a>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html">TOP</a></li>
+        <li><a href="news.html">NEWS</a></li>
+        <li>
+          <a href="https://www.tunecore.co.jp/artists?id=939451" target="_blank" rel="noopener noreferrer">
+            MUSIC
+          </a>
+        </li>
+        <li><a href="profile.html">PROFILE</a></li>
+        <li><a href="contact.html">CONTACT</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="mobile-header">
+    <a href="index.html" class="mobile-title">ranze</a>
+    <div class="mobile-icons">
+      <a href="https://www.instagram.com/ranze_x_/" title="Instagram" target="_blank" rel="noopener noreferrer">
+        <i class="fa-brands fa-instagram"></i>
+      </a>
+      <a href="https://www.tunecore.co.jp/artists?id=939451" title="Music" target="_blank" rel="noopener noreferrer">
+        <i class="fa-solid fa-headphones"></i>
+      </a>
+      <button id="mobileMenuBtn">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-overlay" id="mobileOverlay">
+    <ul>
+      <li><a href="index.html">TOP</a></li>
+      <li><a href="news.html">NEWS</a></li>
+      <li>
+        <a href="https://www.tunecore.co.jp/artists?id=939451" target="_blank" rel="noopener noreferrer">
+          MUSIC
+        </a>
+      </li>
+      <li><a href="profile.html">PROFILE</a></li>
+      <li><a href="contact.html">CONTACT</a></li>
+    </ul>
+  </div>
+
+  <!-- メインコンテンツ (記事詳細) -->
+  <main>
+    <h1>NEWS</h1>
+    <article>
+      <header>
+        <h2>【リリース】 648 - ranze</h2>
+        <p class="news-date">2025.12.01</p>
+      </header>
+      <!-- 画像コンテナ (小さめ & 左寄せ) -->
+      <!-- <div class="image-container">
+        <a href="https://linkco.re/0SQHEzYp" target="_blank" rel="noopener noreferrer">
+            <img src="https://res.cloudinary.com/dwbdedxwb/image/upload/v1742125251/Koe_uz6oyc.jpg" 
+            alt="記事用画像">
+        </a>
+      </div> -->
+      <section class="news-content">
+        <p>2025年12月3日（水）に、両A面シングル「648」の配信リリースが決定しました。</p>
+        <p>配信に合わせて収録曲「648」のMVがYouTubeにて公開されます。</p>
+        <!-- <p> Music：aoka / ranze<br>
+            Lyrics：ranze<br>
+            Recording  : ranze<br>
+            Mixing & Mastering：ranze<br>
+            Director：yuta nagai　<br>
+            Artwork：ranze, yuta nagai　<br>
+            Special Thanks :　電々虫士</p> -->
+      </section>
+
+      <!-- ジャケット画像＋収録曲リスト -->
+      <div class="jacket-section">
+        <div class="jacket-image">
+          <img src="https://res.cloudinary.com/dwbdedxwb/image/upload/v1763121886/648_Artwork_PAKE_ihsmyt.png" alt="648 / Pause ジャケット">
+        </div>
+        <div class="tracklist">
+          <p class="tracklist-title">収録曲：</p>
+          <ol>
+            <li>648</li>
+            <li>Pause</li>
+            <!-- 必要に応じて追加 -->
+          </ol>
+          <p class="buy-link">
+            配信リンク：
+            <a href="https://linkco.re/CEyv48yg" target="_blank" rel="noopener noreferrer">
+                https://linkco.re/CEyv48yg
+            </a>
+          </p>
+        </div>
+      </div>
+
+    </article>
+    <!-- 16:9 バナー -->
+    <div class="banner-container">
+        <a href="https://linkco.re/CEyv48yg" target="_blank" rel="noopener noreferrer">
+          <img src="https://res.cloudinary.com/dwbdedxwb/image/upload/v1763520130/648_Pause_banner_jxicfk.png" alt="バナー画像">
+        </a>
+      </div>
+  </main>
+
+  <!-- フッター共通部分 -->
+  <footer>
+    <div class="social-icons">
+      <a href="https://www.tunecore.co.jp/artists?id=939451" title="Music" target="_blank" rel="noopener noreferrer">
+        <i class="fa-solid fa-music"></i>
+      </a>
+      <a href="https://youtube.com/@ranze2525?si=Nk8Z15uJRjMRtjwt" title="YouTube" target="_blank" rel="noopener noreferrer">
+        <i class="fa-brands fa-youtube"></i>
+      </a>
+      <a href="https://www.instagram.com/ranze_x_/" title="Instagram" target="_blank" rel="noopener noreferrer">
+        <i class="fa-brands fa-instagram"></i>
+      </a>
+      <a href="https://www.tiktok.com/@ranze_x_?is_from_webapp=1&sender_device=pc" title="TikTok" target="_blank" rel="noopener noreferrer">
+        <i class="fa-brands fa-tiktok"></i>
+      </a>
+      <a href="https://soundcloud.com/ranzexx" title="SoundCloud" target="_blank" rel="noopener noreferrer">
+        <i class="fa-brands fa-soundcloud"></i>
+      </a>
+    </div>
+    <p>&copy; 2025 ranze</p>
+  </footer>
+
+  <script>
+    // 3点リーダーの開閉制御 (モバイル)
+    const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+    const mobileOverlay = document.getElementById("mobileOverlay");
+    mobileMenuBtn.addEventListener("click", () => {
+      mobileOverlay.style.display = (mobileOverlay.style.display === "block") ? "none" : "block";
+    });
+  </script>
+</body>
+</html>
